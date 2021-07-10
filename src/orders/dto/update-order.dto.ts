@@ -1,4 +1,4 @@
-export class CreateOrderDto{
+export class updateOrderDto{
     ID: number;
     Vin: number;
     bookingDate: Date;
