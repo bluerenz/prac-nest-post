@@ -1,7 +1,7 @@
 export class UpdateCarDto{
-    Vin:number;
+    Vin: number;
     brand: string;
     model: string;
-    Km: number;
-    stateNumber: number
+    plateNumber: number;
+    lastOrderDate?: Date | any
 }

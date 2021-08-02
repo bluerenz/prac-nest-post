@@ -1,10 +1,11 @@
-import { Column, DataType, Model,Table } from "sequelize-typescript";
+import { BelongsToMany, Column, DataType, Model,Table } from "sequelize-typescript";
+import { Order } from "src/orders/orders.model";
+import { Tarif } from "src/tarif/tarif.model";
 
 interface CarCreationAttrs{
     Vin: number;
     brand: string;
     model: string;
-    Km: number;
     stateNumber: number
 }
 
@@ -12,16 +13,19 @@ interface CarCreationAttrs{
 export class Car extends Model implements CarCreationAttrs{
     @Column({type: DataType.INTEGER, unique: true, primaryKey: true })
     Vin: number;
-
-    @Column({type: DataType.INTEGER, allowNull:true, defaultValue: 0})
-    Km: number;
     
-    @Column({type: DataType.STRING, allowNull:true })
+    @Column({type: DataType.STRING, allowNull:false })
     brand: string;
 
-    @Column({type: DataType.STRING, allowNull:true })
+    @Column({type: DataType.STRING, allowNull:false })
     model: string;
 
     @Column({type: DataType.INTEGER, unique: true })
     stateNumber: number;
+
+    @Column({type: DataType.DATE, allowNull: true})
+    lastOrderDate: Date;
+
+    @BelongsToMany(() => Tarif, () => Order)
+    tarifs: Tarif[]
 }

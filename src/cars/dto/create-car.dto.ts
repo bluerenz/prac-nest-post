@@ -1,7 +1,7 @@
-export class CreateCarDto{
+export class CreateCarDto {
     Vin: number;
     brand: string;
     model: string;
-    Km: number;
-    stateNumber: number
+    plateNumber: number;
+    lastOrderDate?: Date | any
 }
