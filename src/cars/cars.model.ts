@@ -1,6 +1,5 @@
-import { BelongsToMany, Column, DataType, Model,Table } from "sequelize-typescript";
-import { Order } from "src/orders/orders.model";
-import { Tarif } from "src/tarif/tarif.model";
+import { Column, DataType, Model,Table } from "sequelize-typescript";
+
 
 interface CarCreationAttrs{
     Vin: number;
@@ -26,6 +25,4 @@ export class Car extends Model implements CarCreationAttrs{
     @Column({type: DataType.DATE, allowNull: true})
     lastOrderDate: Date;
 
-    @BelongsToMany(() => Tarif, () => Order)
-    tarifs: Tarif[]
 }

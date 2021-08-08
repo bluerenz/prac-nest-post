@@ -1,4 +1,4 @@
-import { Column, DataType, ForeignKey, Model,Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, Model,Table } from "sequelize-typescript";
 import { Car } from "src/cars/cars.model";
 import { Tarif } from "src/tarif/tarif.model";
 
@@ -34,4 +34,7 @@ export class Order extends Model implements OrderCreationAttrs{
 
     @Column({type: DataType.INTEGER, allowNull: true})
     orderCost: number;
+
+    @BelongsTo(() => Tarif)
+    tarif: Tarif
 }

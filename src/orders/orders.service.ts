@@ -35,16 +35,13 @@ export class OrdersService {
 
         if(lastOrderDate > dto.bookingDate) {
             throw new HttpException(`С момента последнего заказа должно пройти более 3х дней!`, HttpStatus.BAD_REQUEST)
-             
         } else if(dto.bookingDate.getDay() === 0 || dto.bookingDate.getDay() === 6) {
             throw new HttpException("Извините, но аренда авто возможна только в будние дни", HttpStatus.BAD_REQUEST)
         } else if(days>30) {
             throw new HttpException("Извините, но аренда авто возможна не больше чем на 30 дней", HttpStatus.BAD_REQUEST)
         }
         console.log("Общий пробег: ", dto.kmPerOrder)
-        // console.log("start day dto:" ,dto.bookingDate)
         console.log('Days: ' ,days)
-        // console.log('dto:', dto)
 
         dto.orderCost = await this.calculate(days, tarifExists.costPerDay)
         console.log("days: ", dto.orderCost, tarifExists.costPerDay)
@@ -68,7 +65,7 @@ export class OrdersService {
          }
          return amount
     }
-
+    
     async getAllOrders(){
         const Orders= await this.orderRepository.findAll();
         return Orders;

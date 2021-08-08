@@ -1,12 +1,15 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { SequelizeModule } from "@nestjs/sequelize"
+import { AuthModule } from "./auth/auth.module";
 import { Car } from "./cars/cars.model";
 import { CarsModule } from './cars/cars.module';
 import { Order } from "./orders/orders.model";
 import { OrdersModule } from './orders/orders.module';
 import { Tarif } from "./tarif/tarif.model";
 import { TarifModule } from "./tarif/tarif.module"; 
+import { User } from "./users/users.model";
+import { UsersModule } from "./users/users.module";
 
 @Module({
     controllers: [],
@@ -21,9 +24,9 @@ import { TarifModule } from "./tarif/tarif.module";
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DB,
-        models: [Car, Order, Tarif],
+        models: [Car, Order, Tarif, User],
         autoLoadModels:true
-      }), CarsModule, OrdersModule,TarifModule
+      }), CarsModule, OrdersModule,TarifModule,AuthModule,UsersModule
     ]
 })
 export class AppModule {}

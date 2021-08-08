@@ -1,5 +1,4 @@
-import { Table, Model, Column, DataType, BelongsToMany,  } from "sequelize-typescript";
-import { Car } from "src/cars/cars.model";
+import { Table, Model, Column, DataType, HasMany  } from "sequelize-typescript";
 import { Order } from "src/orders/orders.model";
 
 
@@ -19,6 +18,6 @@ export class Tarif extends Model implements TarifCreationAttrs {
     @Column({type: DataType.INTEGER, unique: true})
     kmPerDay: number
     
-    @BelongsToMany(() => Car, () => Order)
-    cars: Car[]
+    @HasMany(() => Order)
+    orders: Order
 }
